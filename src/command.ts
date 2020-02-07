@@ -1,17 +1,25 @@
 import * as chalk from 'chalk'
 import { spawn, SpawnOptions } from 'child_process'
 
-export function command(cmd: string, opt?: SpawnOptions): Promise<T_command_result> {
-  console.info(chalk.gray('>', cmd))
-
+export function command(cmd: string, opt?: T_opt, spawn_opts?: SpawnOptions): Promise<T_command_result> {
   opt = {
-    shell: true,
-    stdio: 'inherit',
+    mute: false,
+    ignore_stdio: false,
     ...opt,
   }
 
+  spawn_opts = {
+    shell: true,
+    stdio: opt.ignore_stdio ? 'ignore' : 'inherit',
+    ...spawn_opts,
+  }
+
+  if (!opt.mute) {
+    console.info(chalk.gray('>', cmd))
+  }
+
   return new Promise((resolve, reject) => {
-    const child = spawn(cmd, opt)
+    const child = spawn(cmd, spawn_opts)
 
     const result: { message?: string, code?: number } = {}
 
@@ -33,4 +41,9 @@ export function command(cmd: string, opt?: SpawnOptions): Promise<T_command_resu
 export interface T_command_result {
   message?: string,
   code?: number
+}
+
+export interface T_opt {
+  mute?: boolean
+  ignore_stdio?: boolean
 }
