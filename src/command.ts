@@ -1,5 +1,5 @@
 import * as chalk from 'chalk'
-import { spawn, SpawnOptions } from 'child_process'
+import { ChildProcess, spawn, SpawnOptions } from 'child_process'
 
 export function command(cmd: string, opt?: T_command_opt, spawn_opts?: SpawnOptions): Promise<T_command_result> {
   opt = {
@@ -21,7 +21,7 @@ export function command(cmd: string, opt?: T_command_opt, spawn_opts?: SpawnOpti
   return new Promise((resolve, reject) => {
     const child = spawn(cmd, spawn_opts)
 
-    const result: { message?: string, code?: number } = {}
+    const result: T_command_result = { process: child }
 
     child.on('message', r => {
       result.message = r
@@ -41,6 +41,8 @@ export function command(cmd: string, opt?: T_command_opt, spawn_opts?: SpawnOpti
 export interface T_command_result {
   message?: string,
   code?: number
+  error?: Error,
+  process?: ChildProcess
 }
 
 export interface T_command_opt {
