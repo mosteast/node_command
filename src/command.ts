@@ -1,7 +1,7 @@
 import * as chalk from 'chalk'
 import { spawn, SpawnOptions } from 'child_process'
 
-export function command(cmd: string, opt?: T_opt, spawn_opts?: SpawnOptions): Promise<T_command_result> {
+export function command(cmd: string, opt?: T_command_opt, spawn_opts?: SpawnOptions): Promise<T_command_result> {
   opt = {
     mute: false,
     ignore_stdio: false,
@@ -43,7 +43,7 @@ export interface T_command_result {
   code?: number
 }
 
-export interface T_opt {
+export interface T_command_opt {
   mute?: boolean
   ignore_stdio?: boolean
 }
