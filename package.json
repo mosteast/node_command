@@ -17,7 +17,9 @@
   },
   "author": "Mosteast team",
   "license": "ISC",
-  "dependencies": {},
+  "dependencies": {
+    "chalk": "^3.0.0"
+  },
   "devDependencies": {
     "@types/fs-extra": "^8.0.1",
     "@types/jest": "^24.9.1",
