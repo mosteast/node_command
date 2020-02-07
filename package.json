@@ -6,9 +6,6 @@
   "repository": "github:mosteast/node_command",
   "main": "build/index.js",
   "type": "build/index.d.ts",
-  "files": [
-    "build/"
-  ],
   "scripts": {
     "test": "NODE_ENV=testing npx jest --coverage --runInBand --detectOpenHandles --forceExit",
     "release": "npm publish --access public"
