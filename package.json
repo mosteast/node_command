@@ -1,7 +1,7 @@
 {
   "name": "@mosteast/command",
   "description": "Run promisified commands",
-  "version": "0.1.5",
+  "version": "0.1.4",
   "homepage": "https://github.com/mosteast/node_command#readme",
   "repository": "github:mosteast/node_command",
   "main": "build/index.js",
