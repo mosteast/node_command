@@ -14,7 +14,7 @@ export function command(cmd: string, opt?: T_command_opt, spawn_opts?: SpawnOpti
     ...spawn_opts,
   }
 
-  if (!opt.mute) {
+  if ( ! opt.mute) {
     console.info(chalk.gray('>', cmd))
   }
 
@@ -33,15 +33,17 @@ export function command(cmd: string, opt?: T_command_opt, spawn_opts?: SpawnOpti
 
     child.on('exit', (r) => {
       result.code = r
+      result.ok = r === 0
       resolve(result)
     })
   })
 }
 
 export interface T_command_result {
-  message?: string,
+  message?: string
+  ok?: boolean
   code?: number
-  error?: Error,
+  error?: Error
   process?: ChildProcess
 }
 

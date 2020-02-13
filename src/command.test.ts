@@ -11,3 +11,8 @@ it('Can ignore', async () => {
   console.log('-------------------')
   await command('ls', { ignore_stdio: true })
 })
+
+it('ok', async () => {
+  expect((await command('ls')).ok).toBeTruthy()
+  expect((await command('_a_not_exist_command')).ok).toBeFalsy()
+})
